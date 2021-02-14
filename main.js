@@ -34,12 +34,17 @@ class Person {
     withdraw(accountNumber, amount) {
         const promise = new Promise((resolve, reject) => {
             const foundAccount = this.findAccount(accountNumber);
-
+            
             if (foundAccount && foundAccount.balance >= amount) {
+            
+                var that = this;
                 setTimeout(() => {
                     foundAccount.balance = foundAccount.balance - amount;
-                    resolve(`Operation successful, withdrawn ${amount} from account ${accountNumber}, remaining balance ${foundAccount.balance}`);
-                }, 3000);
+                   // resolve(`Operation successful, withdrawn ${amount} from account ${accountNumber}, remaining balance ${foundAccount.balance}`);
+                //}, 3000);
+                this.aMik = [1,2];                
+               // resolve(`ala ${this.aMik}`);  }, 3000);
+                resolve(this.aMik);  }, 3000);            
             } else if (!foundAccount) {
                 reject('Incorrect account number')
             } else {
@@ -69,8 +74,9 @@ console.log(person.filterPositiveAccounts());
 
 
 person.withdraw(1, 200)
-    .then(success => {
-        console.log(success);
+    .then(ala => {
+//        debugger;
+     console.log(ala);
         console.log('------------------after successful withdrawal--------------------------')
         console.log(person.sayHello());
     })
